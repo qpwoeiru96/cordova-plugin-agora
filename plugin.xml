@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="la.sou.plugin.agora"
+        version="0.0.1">
+  <name>Agora Audio Chat</name>
+  <description>
+    Cordova Plugin for Agora Audio Chat http://cn.agora.io/
+  </description>
+
+  <engines>
+    <engine name="cordova" version=">=6.3.1"/>
+  </engines>
+
+  <js-module src="www/agora.js" name="agora">
+    <clobbers target="agora"/>
+  </js-module>
+
+  <!-- android -->
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="Agora">
+        <param name="android-package" value="la.sou.plugin.agora.Agora"/>
+      </feature>
+    </config-file>
+
+    <config-file target="AndroidManifest.xml" parent="/*">
+      <uses-permission android:name="android.permission.INTERNET"/>
+      <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+      <uses-permission android:name="android.permission.BLUETOOTH"/>
+      <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+      <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+      <uses-permission android:name="android.permission.WAKE_LOCK"/>
+      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+      <uses-permission android:name="android.permission.CAMERA"/>
+    </config-file>
+
+
+    <source-file src="src/android/la/sou/plugin/agora/Agora.java" target-dir="src/la/sou/plugin/agora"/>
+    <source-file src="src/android/la/sou/plugin/agora/AgoraClient.java" target-dir="src/la/sou/plugin/agora"/>
+    <source-file src="src/android/la/sou/plugin/agora/AgoraError.java" target-dir="src/la/sou/plugin/agora"/>
+    <source-file src="src/android/la/sou/plugin/agora/ClientError.java" target-dir="src/la/sou/plugin/agora"/>
+    <source-file src="src/android/la/sou/plugin/agora/MessageHandler.java" target-dir="src/la/sou/plugin/agora"/>
+	
+    <source-file src="src/android/libs/agora-rtc-sdk.jar" target-dir="libs"/>
+    <source-file src="src/android/libs/crasheye.jar" target-dir="libs"/>
+	
+    <source-file src="src/android/libs/armeabi-v7a/libagora-rtc-sdk-jni.so" target-dir="libs/armeabi-v7a" framework="true"/>
+    <source-file src="src/android/libs/armeabi-v7a/libHDACEngine.so" target-dir="libs/armeabi-v7a" framework="true"/>
+    <source-file src="src/android/libs/x86/libagora-rtc-sdk-jni.so" target-dir="libs/x86" framework="true"/>
+    <source-file src="src/android/libs/x86/libHDACEngine.so" target-dir="libs/x86" framework="true"/>
+    <source-file src="src/android/libs/include/IAgoraMediaEngine.h" target-dir="libs/include" framework="true"/>
+    <source-file src="src/android/libs/include/IAgoraRtcEngine.h" target-dir="libs/include" framework="true"/>
+  </platform>
+</plugin>
