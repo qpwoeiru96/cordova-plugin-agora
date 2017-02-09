@@ -44,7 +44,7 @@
     <source-file src="src/android/la/sou/plugin/agora/MessageHandler.java" target-dir="src/la/sou/plugin/agora"/>
 	
     <source-file src="src/android/libs/agora-rtc-sdk.jar" target-dir="libs"/>
-    <source-file src="src/android/libs/crasheye.jar" target-dir="libs"/>
+    <!--<source-file src="src/android/libs/crasheye.jar" target-dir="libs"/>-->
 	
     <source-file src="src/android/libs/armeabi-v7a/libagora-rtc-sdk-jni.so" target-dir="libs/armeabi-v7a" framework="true"/>
     <source-file src="src/android/libs/armeabi-v7a/libHDACEngine.so" target-dir="libs/armeabi-v7a" framework="true"/>

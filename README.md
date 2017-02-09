@@ -1,3 +1,5 @@
+###BETA VERSION###
+
 ```
 Method:
 		addEventListener: function(eventName, callback) {},
@@ -72,3 +74,5 @@ Event: @see: android document
 			//...
 		});
 ```
+
+for more, please contact the author.

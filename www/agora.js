@@ -1,4 +1,4 @@
-cordova.define("la.sou.plugin.agora.agora", function(require, exports, module) {
+//cordova.define("la.sou.plugin.agora.agora", function(require, exports, module) {
     var exec = require('cordova/exec'),
         cordova = require('cordova'),
         channel = require('cordova/channel'),
@@ -84,7 +84,15 @@ cordova.define("la.sou.plugin.agora.agora", function(require, exports, module) {
 
         getCallId: function(successCallback, failCallback) {
             cordova.exec(successCallback, failCallback, 'Agora', 'getCallId', []);
+        },
+
+        startRecordingService: function(recordingKey, successCallback, failCallback) {
+            cordova.exec(successCallback, failCallback, 'Agora', 'startRecordingService', [recordingKey]);
+        },
+
+        stopRecordingService: function(recordingKey, successCallback, failCallback) {
+            cordova.exec(successCallback, failCallback, 'Agora', 'stopRecordingService', [recordingKey]);
         }
     };
 
-});
+//});
