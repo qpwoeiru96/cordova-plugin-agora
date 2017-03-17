@@ -161,7 +161,7 @@ public class Agora extends CordovaPlugin {
         //public abstract int startRecordingService(String key)
         if(action.equals("startRecordingService")) {
             final String recordingKey = args.getString(0);
-            String result =  AgoraClient.getInstance().getRtcEngine().startRecordingService(recordingKey);
+            int result = AgoraClient.getInstance().getRtcEngine().startRecordingService(recordingKey);
             PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, result);
             callbackContext.sendPluginResult(pluginResult);
             return true;
@@ -170,7 +170,7 @@ public class Agora extends CordovaPlugin {
         //public int stopRecordingService(String key)
         if(action.equals("stopRecordingService")) {
             final String recordingKey = args.getString(0);
-            String result =  AgoraClient.getInstance().getRtcEngine().stopRecordingService(recordingKey);
+            int result = AgoraClient.getInstance().getRtcEngine().stopRecordingService(recordingKey);
             PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, result);
             callbackContext.sendPluginResult(pluginResult);
             return true;
