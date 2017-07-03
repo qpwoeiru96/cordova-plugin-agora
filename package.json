@@ -1,0 +1,23 @@
+
+{
+  "name": "cordova-plugin-agora",
+  "version": "0.0.1",
+  "description": " Cordova Plugin for Agora Audio Chat http://cn.agora.io/.",
+  "cordova": {
+    "id": "cordova-plugin-agora",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qpwoeiru96/cordova-plugin-agora.git"
+  },
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=6.3.0"
+    }
+  ]
+}
