@@ -23,6 +23,7 @@ public class MessageHandler extends IRtcEngineEventHandler {
             data.put("uid", uid);
             data.put("elapsed", elapsed);
             Agora.notifyEvent("onJoinChannelSuccess", data);
+            //AgoraClient.getInstance().getRtcEngine().setEnableSpeakerphone(true);
         } catch (JSONException ignored) {}
     }
 

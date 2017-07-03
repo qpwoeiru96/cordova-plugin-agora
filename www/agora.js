@@ -1,4 +1,3 @@
-//cordova.define("la.sou.plugin.agora.agora", function(require, exports, module) {
     var exec = require('cordova/exec'),
         cordova = require('cordova'),
         channel = require('cordova/channel'),
@@ -92,7 +91,9 @@
 
         stopRecordingService: function(recordingKey, successCallback, failCallback) {
             cordova.exec(successCallback, failCallback, 'Agora', 'stopRecordingService', [recordingKey]);
+        },
+
+        enableAudioVolumeIndication: function(interval, smooth, successCallback, failCallback) {
+            cordova.exec(successCallback, failCallback, 'Agora', 'enableAudioVolumeIndication', [interval, smooth]);
         }
     };
-
-//});

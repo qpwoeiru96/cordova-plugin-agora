@@ -40,6 +40,29 @@ public class Agora extends CordovaPlugin {
         super.pluginInitialize();
     }
 
+
+//    @Override
+//    public void onNewIntent(Intent intent) {
+//        //RtcEngine.destroy();
+//    }
+
+    /**
+     * Called when the WebView does a top-level navigation or refreshes.
+     *
+     * Plugins should stop any long-running processes and clean up internal state.
+     *
+     * Does nothing by default.
+     */
+    @Override
+    public void onReset() {
+        RtcEngine.destroy();
+    }
+
+//    @Override
+//    public void onDestroy() {
+//        //RtcEngine.destroy();
+//    }
+
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
 
@@ -62,8 +85,11 @@ public class Agora extends CordovaPlugin {
                         @Override
                         public void run() {
                             AgoraClient.Create(appId, context);
+							
+                            AgoraClient.getInstance().getRtcEngine().setDefaultAudioRoutetoSpeakerphone(true);
                             //禁止视频
                             AgoraClient.getInstance().getRtcEngine().disableVideo();
+                            AgoraClient.getInstance().getRtcEngine().setDefaultAudioRoutetoSpeakerphone(true);
                             callbackContext.success();
                         }
                     });
@@ -84,10 +110,21 @@ public class Agora extends CordovaPlugin {
                 public void run() {
                     AgoraClient.getInstance().getRtcEngine()
                             .joinChannel(channelKey, channelName, null, uid);
-
                     callbackContext.success();
                 }
             });
+            return true;
+        }
+
+        if (action.equals("enableAudioVolumeIndication")) {
+            final int interval = args.getInt(0);
+            final int smooth = args.getInt(1);
+            int result = AgoraClient.getInstance().getRtcEngine().enableAudioVolumeIndication(interval, smooth);
+            if(AgoraError.ERR_OK != result) {
+                callbackContext.error(ClientError.Build(result, "exec enableAudioVolumeIndication failed!"));
+            } else {
+                callbackContext.success();
+            }
             return true;
         }
 
@@ -151,26 +188,34 @@ public class Agora extends CordovaPlugin {
             return true;
         }
 
+        if(action.equals("startServerRecord")) {
+
+            final String recordKey = args.getString(0);
+            int result =  AgoraClient.getInstance().getRtcEngine().startRecordingService(recordKey);
+
+            if(AgoraError.ERR_OK != result) {
+                callbackContext.error(ClientError.Build(result, "exec startServerRecord failed!"));
+            } else {
+                callbackContext.success();
+            }
+            return true;
+        }
+
+        if(action.equals("stopServerRecord")) {
+
+            final String recordKey = args.getString(0);
+            int result =  AgoraClient.getInstance().getRtcEngine().stopRecordingService(recordKey);
+
+            if(AgoraError.ERR_OK != result) {
+                callbackContext.error(ClientError.Build(result, "exec stopServerRecord failed!"));
+            } else {
+                callbackContext.success();
+            }
+            return true;
+        }
+
         if(action.equals("getCallId")) {
             String result =  AgoraClient.getInstance().getRtcEngine().getCallId();
-            PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, result);
-            callbackContext.sendPluginResult(pluginResult);
-            return true;
-        }
-
-        //public abstract int startRecordingService(String key)
-        if(action.equals("startRecordingService")) {
-            final String recordingKey = args.getString(0);
-            int result = AgoraClient.getInstance().getRtcEngine().startRecordingService(recordingKey);
-            PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, result);
-            callbackContext.sendPluginResult(pluginResult);
-            return true;
-        }
-
-        //public int stopRecordingService(String key)
-        if(action.equals("stopRecordingService")) {
-            final String recordingKey = args.getString(0);
-            int result = AgoraClient.getInstance().getRtcEngine().stopRecordingService(recordingKey);
             PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, result);
             callbackContext.sendPluginResult(pluginResult);
             return true;
