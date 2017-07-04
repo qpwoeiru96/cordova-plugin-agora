@@ -58,10 +58,10 @@ public class Agora extends CordovaPlugin {
         RtcEngine.destroy();
     }
 
-//    @Override
-//    public void onDestroy() {
-//        //RtcEngine.destroy();
-//    }
+    @Override
+    public void onDestroy() {
+        RtcEngine.destroy();
+    }
 
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
