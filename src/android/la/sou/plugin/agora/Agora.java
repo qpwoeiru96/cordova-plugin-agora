@@ -188,7 +188,7 @@ public class Agora extends CordovaPlugin {
             return true;
         }
 
-        if(action.equals("startServerRecord")) {
+        if(action.equals("startRecordingService")) {
 
             final String recordKey = args.getString(0);
             int result =  AgoraClient.getInstance().getRtcEngine().startRecordingService(recordKey);
@@ -201,7 +201,7 @@ public class Agora extends CordovaPlugin {
             return true;
         }
 
-        if(action.equals("stopServerRecord")) {
+        if(action.equals("stopRecordingService")) {
 
             final String recordKey = args.getString(0);
             int result =  AgoraClient.getInstance().getRtcEngine().stopRecordingService(recordKey);
